@@ -17,3 +17,5 @@ Dependencies
 - Qb-inventory
 - Qb-menu
  
+Join oue discord for support 
+https://discord.gg/NKRCs68wC6
