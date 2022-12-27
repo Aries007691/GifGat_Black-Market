@@ -1,0 +1,1 @@
+    ["secret_key"]			        	 = {["secret_key"] = "key1",  	  	            	["label"] = "Black Market key",	  	   	["weight"] = 1000, 		["type"] = "item", 		["image"] = "BMarket.png", 	                ["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	  	 ["combinable"] = nil,   ["description"] = "A key to use by some dodgy guy"},

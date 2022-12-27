@@ -30,7 +30,7 @@ CreateThread(function()
                     if dist <= 2 then
                         if IsControlJustPressed(0, 38) then
                             if GetClockHours() >= Config.ShopOpen and GetClockHours() <= Config.ShopClose then
-                                TriggerEvent('gifmarket:client:SellMenu')
+                                TriggerEvent('gifmarket:client:SellMenu2')
                             else
                                 QBCore.Functions.Notify("The shop is currently closed, please come back later.", 'error', 500)
                             end
@@ -85,7 +85,6 @@ RegisterNetEvent("gifmarket:openshop", function()
     end) 
 end)
 
-
 RegisterNetEvent('gifmarket:client:SellMenu', function()
     exports['qb-menu']:openMenu({
         {
@@ -116,4 +115,23 @@ RegisterNetEvent('gifmarket:client:SellMenu', function()
             }
         },
     })
+end)
+
+
+---------If you dont want to use an item comment out the enire code bellow
+RegisterNetEvent("gifmarket:client:SellMenu2", function()
+	if not coolDowned then
+		coolDowned = true
+		QBCore.Functions.TriggerCallback('QBCore:HasItem', function(HasItem)
+			if HasItem then
+                TriggerEvent("gifmarket:client:SellMenu")
+				coolDowned = false
+				startCooldown()
+			else
+				QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
+			end
+		end, "secret_key") ---- This is the item requered
+	else
+		QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
+	end
 end)
