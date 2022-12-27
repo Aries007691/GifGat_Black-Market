@@ -121,11 +121,11 @@ end)
 ---------If you dont want to use an item comment out the enire code bellow
 RegisterNetEvent("gifmarket:client:SellMenu2", function()
 	if not coolDowned then
-		coolDowned = true
+		coolDowned = false ---- Dont set to true, shop will be in a cooldown if true
 		QBCore.Functions.TriggerCallback('QBCore:HasItem', function(HasItem)
 			if HasItem then
                 TriggerEvent("gifmarket:client:SellMenu")
-				coolDowned = false
+				coolDowned = false ---- Dont set to true, shop will be in a cooldown if true
 				startCooldown()
 			else
 				QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
