@@ -1,1 +1,12 @@
-    ["secret_key"]			        	 = {["secret_key"] = "key1",  	  	            	["label"] = "Black Market key",	  	   	["weight"] = 1000, 		["type"] = "item", 		["image"] = "BMarket.png", 	                ["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	  	 ["combinable"] = nil,   ["description"] = "A key to use by some dodgy guy"},
+["treasurekey"] = {
+["name"] = "treasurekey",
+["label"] = "Treasure key",
+["weight"] = 200,
+["type"] = "item",
+["image"] = "BMarket.png",
+["unique"] = false,
+["useable"] = false,
+["shouldClose"] = false,
+["combinable"] = nil,
+["description"] = "A key? Maybe for treasure"
+},
