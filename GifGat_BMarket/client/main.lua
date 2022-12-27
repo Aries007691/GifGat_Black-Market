@@ -130,7 +130,7 @@ RegisterNetEvent("gifmarket:client:SellMenu2", function()
 			else
 				QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
 			end
-		end, "secret_key") ---- This is the item requered
+		end, "treasurekey") ---- This is the item requered
 	else
 		QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
 	end
