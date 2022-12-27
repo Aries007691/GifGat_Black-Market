@@ -19,3 +19,8 @@ Dependencies
  
 Join our discord for support 
 https://discord.gg/NKRCs68wC6
+
+
+
+V1.2.0 Update 27/12/2022
+- Added the ability to use an item to be able to acess the shop
