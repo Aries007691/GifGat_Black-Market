@@ -20,6 +20,8 @@ Dependencies
 Join our discord for support 
 https://discord.gg/NKRCs68wC6
 
+Preview - https://streamable.com/zt257q
+
 
 
 V1.2.0 Update 27/12/2022
