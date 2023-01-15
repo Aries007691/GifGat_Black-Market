@@ -1,4 +1,5 @@
 QBCore = exports['qb-core']:GetCoreObject()
+local cooldown = false
 
 CreateThread(function()
     while true do
@@ -15,12 +16,13 @@ CreateThread(function()
                         while not HasModelLoaded('g_m_m_chicold_01') do
                             Wait(10)
                         end
-                        dealer = CreatePed(26, 'g_m_m_chicold_01', loc["x"], loc["y"], loc["z"] - 1 , loc["h"], false, false)
+                        dealer = CreatePed(26, 'g_m_m_chicold_01', loc["x"], loc["y"], loc["z"] - 1, loc["h"], false,
+                            false)
                         SetEntityHeading(dealer, loc["h"])
                         SetBlockingOfNonTemporaryEvents(dealer, true)
                         TaskStartScenarioInPlace(dealer, 'WORLD_HUMAN_AA_SMOKE', 0, false)
                         FreezeEntityPosition(dealer, true)
-	                    SetEntityInvincible(dealer, true)
+                        SetEntityInvincible(dealer, true)
                     end
                 else
                     Wait(1500)
@@ -32,7 +34,8 @@ CreateThread(function()
                             if GetClockHours() >= Config.ShopOpen and GetClockHours() <= Config.ShopClose then
                                 TriggerEvent('gifmarket:client:SellMenu2')
                             else
-                                QBCore.Functions.Notify("The shop is currently closed, please come back later.", 'error', 500)
+                                QBCore.Functions.Notify("The shop is currently closed, please come back later.", 'error'
+                                    , 500)
                             end
                         end
                     end
@@ -47,17 +50,17 @@ CreateThread(function()
 end)
 
 function DrawText3Ds(x, y, z, text)
-	SetTextScale(0.35, 0.35)
+    SetTextScale(0.35, 0.35)
     SetTextFont(4)
     SetTextProportional(1)
     SetTextColour(255, 255, 255, 215)
     SetTextEntry("STRING")
     SetTextCentre(true)
     AddTextComponentString(text)
-    SetDrawOrigin(x,y,z, 0)
+    SetDrawOrigin(x, y, z, 0)
     DrawText(0.0, 0.0)
     local factor = (string.len(text)) / 370
-    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
+    DrawRect(0.0, 0.0 + 0.0125, 0.017 + factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
 end
 
@@ -71,7 +74,7 @@ RegisterNetEvent("gifmarket:client:SellItems", function()
     end, function()
         ClearPedTasks(PlayerPedId())
         QBCore.Functions.Notify("Canceled...", 'error')
-    end) 
+    end)
 end)
 
 RegisterNetEvent("gifmarket:openshop", function()
@@ -82,35 +85,35 @@ RegisterNetEvent("gifmarket:openshop", function()
     end, function()
         ClearPedTasks(PlayerPedId())
         QBCore.Functions.Notify("Canceled...", 'error')
-    end) 
+    end)
 end)
 
 RegisterNetEvent('gifmarket:client:SellMenu', function()
     exports['qb-menu']:openMenu({
         {
             header = "Black Market",
-            isMenuHeader = true        
+            isMenuHeader = true
         },
         {
             header = "I have some items?",
-			txt = "Sell your items",
-			params = {
+            txt = "Sell your items",
+            params = {
                 event = 'gifmarket:client:SellItems'
 
             }
         },
         {
             header = "Open shop",
-			txt = "Buy items",
-			params = {
+            txt = "Buy items",
+            params = {
                 event = 'gifmarket:openshop'
 
             }
         },
         {
             header = "Close menu",
-			txt = "",
-			params = {
+            txt = "",
+            params = {
                 event = 'qb-menu:closeMenu'
             }
         },
@@ -120,18 +123,20 @@ end)
 
 ---------If you dont want to use an item comment out the enire code bellow
 RegisterNetEvent("gifmarket:client:SellMenu2", function()
-	if not coolDowned then
-		coolDowned = false ---- Dont set to true, shop will be in a cooldown if true
-		QBCore.Functions.TriggerCallback('QBCore:HasItem', function(HasItem)
-			if HasItem then
+    if not cooldown then
+        QBCore.Functions.TriggerCallback('QBCore:HasItem', function(HasItem)
+            if HasItem then
                 TriggerEvent("gifmarket:client:SellMenu")
-				coolDowned = false ---- Dont set to true, shop will be in a cooldown if true
-				startCooldown()
-			else
-				QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
-			end
-		end, "treasurekey") ---- This is the item requered
-	else
-		QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
-	end
+                TriggerServerEvent('gifgatmarket:server:startCooldown')
+            else
+                QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
+            end
+        end, "treasurekey") ---- This is the item requered
+    else
+        QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
+    end
+end)
+
+RegisterNetEvent("gifgatmarket:client:setCooldown", function(cd)
+    cooldown = cd
 end)
