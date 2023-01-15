@@ -26,3 +26,7 @@ Preview - https://streamable.com/zt257q
 
 V1.2.0 Update 27/12/2022
 - Added the ability to use an item to be able to acess the shop
+
+15/1/2023
+- Fixed the cooldown error
+
