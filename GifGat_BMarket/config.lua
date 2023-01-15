@@ -4,6 +4,7 @@ Config = {}
 
 Config.Model = 'cs_joeminuteman'
 
+Config.cooldownTime = 10 --minutes
 
 ------ Shop Times
 
@@ -16,7 +17,7 @@ Config.ShopClose = 14
 
 Config.SellableItems = {
     ['cryptostick'] = math.random(1000, 1000),
-    ['var_usb2'] = math.random(250,300),
+    ['var_usb2'] = math.random(250, 300),
     ['var_usb3'] = 500,
     ['var_usb4'] = 400,
     ['var_usb1'] = math.random(900, 1200),
@@ -122,9 +123,9 @@ Config.Products = {
 
 
 local setLoc = math.random(1, 3) -- This code randomly selects a location from Config.SetLocation
---local setLoc = 1 -- this code is if you only use 1 location permenently 
+--local setLoc = 1 -- this code is if you only use 1 location permenently
 
-Config.SetLocation = {    ------add more locations here
+Config.SetLocation = { ------add more locations here
     [1] = {
         ["x"] = -1556.84,
         ["y"] = -417.02,
@@ -143,7 +144,7 @@ Config.SetLocation = {    ------add more locations here
         ["z"] = 38.09,
         ["h"] = 232.84,
     },
-} 
+}
 
 Config.Locations = {
     ["market"] = {
