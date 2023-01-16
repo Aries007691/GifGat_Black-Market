@@ -123,15 +123,14 @@ end)
 
 ---------If you dont want to use an item comment out the enire code bellow
 RegisterNetEvent("gifmarket:client:SellMenu2", function()
-    if not cooldown then
-        QBCore.Functions.TriggerCallback('QBCore:HasItem', function(HasItem)
-            if HasItem then
-                TriggerEvent("gifmarket:client:SellMenu")
-                TriggerServerEvent('gifgatmarket:server:startCooldown')
-            else
+if not cooldown then
+    local hasItem = QBCore.Functions.HasItem('YOUR ITEM NAME')
+    if hasItem then
+        TriggerEvent("gifmarket:client:SellMenu")
+        TriggerServerEvent('gifgatmarket:server:startCooldown')
+    else
                 QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
             end
-        end, "treasurekey") ---- This is the item requered
     else
         QBCore.Functions.Notify('you are not trusted to use this', 'error', 3500)
     end
